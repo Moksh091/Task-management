@@ -1,0 +1,1 @@
+{"root":["./src/custom.d.ts","./src/index.ts","./src/middleware/user.ts","./src/routes/auth/index.ts","./src/routes/projects/index.ts","./src/routes/tasks/index.ts"],"version":"5.7.3"}
