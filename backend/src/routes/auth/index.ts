@@ -6,26 +6,6 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 export const userRouter = Router();
 
-passport.serializeUser((user, done) => {
-  if (user) {
-    done(null, user.id);
-  }
-});
-
-passport.deserializeUser(async (id: string, done) => {
-  try {
-    const user = await prisma.user.findUnique({ where: { id } });
-
-    if (!user) {
-      return done(null, false);
-    }
-    console.log(user);
-    done(null, user);
-  } catch (error) {
-    done(error, null)
-  }
-});
-
 passport.use(
   new Strategy(
     {
@@ -57,6 +37,26 @@ passport.use(
     }
   )
 );
+
+passport.serializeUser((user, done) => {
+  if (user) {
+    done(null, user.id);
+  }
+});
+
+passport.deserializeUser(async (id: string, done) => {
+  try {
+    const user = await prisma.user.findUnique({ where: { id } });
+
+    if (!user) {
+      return done(null, false);
+    }
+    console.log(user);
+    done(null, user);
+  } catch (error) {
+    done(error, null)
+  }
+});
 
 userRouter.get(
   "/login/federated/google",

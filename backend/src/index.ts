@@ -10,7 +10,7 @@ import passport from "passport";
 
 const port = 3000;
 const app = express();
-const prisma: any = new PrismaClient();
+const prisma = new PrismaClient();
 
 app.use(express.json());
 app.use(
